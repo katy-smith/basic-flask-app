@@ -33,29 +33,40 @@ jobs:
         tags: demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3b798d0a0278458ba0fa9307f8567fe3 }}/demo-image:${{ github.sha }}
         file: ./Dockerfile
 
-  deploy:
+  
+  deploy-to-staging:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      name: 'staging'
+      # you can also provide a URL for the staging environment if desired
+      # url: ${{ your-staging-url }}
 
     steps:
-    - uses: trstringer/manual-approval@v1
+    - name: Deploy to Azure Web App (Staging)
+      id: deploy-to-staging
+      uses: azure/webapps-deploy@v2
       with:
-        secret: ${{ secrets.MY_GITHUB_TOKEN }}
-        approvers: katy-smith
-        minimum-approvals: 1
-        issue-title: "Deploying v1.3.5 to prod from staging"
-        issue-body: "Please approve or deny the deployment of version v1.3.5."
-        exclude-workflow-initiator-as-approver: false
-        additional-approved-words: ''
-        additional-denied-words: ''
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
+        app-name: 'demo-image-app'
+        slot-name: 'staging'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_Staging }} # Note: Adjust this to your staging publish profile secret
+        images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3b798d0a0278458ba0fa9307f8567fe3 }}/demo-image:${{ github.sha }}'
+
+  deploy-to-production:
+    runs-on: ubuntu-latest
+    needs: deploy-to-staging
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-staging.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App (Production)
+      id: deploy-to-production
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'demo-image-app'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_9241f395c4e0481ba26c7dc3ce58ef8f }}
         images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3b798d0a0278458ba0fa9307f8567fe3 }}/demo-image:${{ github.sha }}'
+
+        
