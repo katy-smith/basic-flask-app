@@ -1,0 +1,76 @@
+
+/* Buttons */
+
+.btn_index {
+    width: 90px;
+    border-radius: 60px;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 15px;
+    font-variant-position: normal;
+    background: #6f7375;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.input_item {
+    width: 250px;
+    border-radius: 60px;
+    font-family: Arial;
+    color: #6f7375;
+    font-size: 15px;
+    font-variant-position: normal;
+    background: #e0e0e0;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+input[type=submit]:hover {
+    background: #ff8c00;
+    text-decoration: none;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+}
+
+.btn_index:hover {
+    background: #ff8c00;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.important {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #ff8c00;;
+    border-radius: 3px;
+}
+
+.btn_delete {
+    border-radius: 50px;
+    font-variant-position: normal;
+    border: #4c4c4c;
+    padding: 8px;
+}
+.btn_delete:hover {
+    background: #7b0000;
+}
+
+.content {
+    margin-right: 1rem;
+}
+
+.text_center {
+    text-align: center;
+    font-size: 20px;
+    color: rgb(62, 62, 62)
+}

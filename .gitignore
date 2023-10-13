@@ -1,0 +1,5 @@
+mongo/journal/
+
+.env
+venv/
+*_pycache_*

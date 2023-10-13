@@ -1,0 +1,10 @@
+flask
+gunicorn
+waitress
+pymongo
+pytest
+python-dotenv
+bandit
+pip-check
+ansi2html
+mock
