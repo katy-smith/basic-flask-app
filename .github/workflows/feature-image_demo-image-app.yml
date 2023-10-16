@@ -40,7 +40,7 @@ jobs:
     environment:
       name: 'staging'
       # can also provide a URL for the staging environment 
-      # url: ${{ steps.deploy-to-staging.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-staging.outputs.webapp-url }}
 
     steps:
     - name: Deploy to Azure Web App (Staging)
@@ -49,7 +49,7 @@ jobs:
       with:
         app-name: 'demo-image-app_staging'
         slot-name: 'staging'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9241f395c4e0481ba26c7dc3ce58ef8f }} # Note: This actually needs to be the staging publish profile secret
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }} # Note: This actually needs to be the staging publish profile secret
         images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3b798d0a0278458ba0fa9307f8567fe3 }}/demo-image:${{ github.sha }}'
 
   deploy-to-production:
