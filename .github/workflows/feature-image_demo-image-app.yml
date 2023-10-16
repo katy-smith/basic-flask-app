@@ -47,9 +47,9 @@ jobs:
       id: deploy-to-staging
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'demo-image-app_staging'
+        app-name: 'demo-image-app(staging)'
         slot-name: 'staging'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }} # Note: This actually needs to be the staging publish profile secret
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_cc99e4e62c7b4b6ead0ba6896dd9de6d }} # Note: This actually needs to be the staging publish profile secret
         images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3b798d0a0278458ba0fa9307f8567fe3 }}/demo-image:${{ github.sha }}'
 
   deploy-to-production:
@@ -57,7 +57,7 @@ jobs:
     needs: deploy-to-staging
     environment:
       name: 'production'
-      url: ${{ steps.deploy-to-staging.outputs.webapp-url }}
+      url: ${{ steps.deploy-to-production.outputs.webapp-url }}
 
     steps:
     - name: Deploy to Azure Web App (Production)
