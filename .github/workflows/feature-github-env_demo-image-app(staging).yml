@@ -6,7 +6,7 @@ name: Build and deploy container app to Azure Web App - demo-image-app(staging)
 on:
   push:
     branches:
-      - feature/github-env
+      - feature/image
   workflow_dispatch:
 
 jobs:
