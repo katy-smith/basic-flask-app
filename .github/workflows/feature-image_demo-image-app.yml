@@ -48,7 +48,7 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'demo-image-app'
-        slot-name: 'production'
+        slot-name: 'staging'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_9241f395c4e0481ba26c7dc3ce58ef8f }} # Note: This actually needs to be the staging publish profile secret
         images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3b798d0a0278458ba0fa9307f8567fe3 }}/demo-image:${{ github.sha }}'
 
