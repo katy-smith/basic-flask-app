@@ -4,9 +4,6 @@
 name: Build and deploy PRODUCTION
 
 on:
-  # push:
-  #   branches:
-  #     - feature/workflow-dispatch
   workflow_dispatch:
 
 jobs:
