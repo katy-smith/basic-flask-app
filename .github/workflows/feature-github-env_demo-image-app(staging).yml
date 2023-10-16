@@ -65,6 +65,6 @@ jobs:
         app-name: 'demo-image-app'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_9241f395c4e0481ba26c7dc3ce58ef8f }}
-        images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3b798d0a0278458ba0fa9307f8567fe3 }}/demo-image:${{ github.sha }}'
+        images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f524ba0efa2c4b2fad2a423eb1ede602 }}/demo-image:${{ github.sha }}'
 
       
