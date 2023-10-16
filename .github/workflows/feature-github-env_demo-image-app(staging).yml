@@ -49,3 +49,22 @@ jobs:
         slot-name: 'staging'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_cc99e4e62c7b4b6ead0ba6896dd9de6d }}
         images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_f524ba0efa2c4b2fad2a423eb1ede602 }}/demorestaurantregistry/demo-image:${{ github.sha }}'
+  
+  deploy-to-production:
+    runs-on: ubuntu-latest
+    needs: deploy
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-production.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App (Production)
+      id: deploy-to-production
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'demo-image-app'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9241f395c4e0481ba26c7dc3ce58ef8f }}
+        images: 'demorestaurantregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_3b798d0a0278458ba0fa9307f8567fe3 }}/demo-image:${{ github.sha }}'
+
+      
