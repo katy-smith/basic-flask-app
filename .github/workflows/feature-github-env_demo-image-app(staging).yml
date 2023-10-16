@@ -6,7 +6,7 @@ name: Build and deploy STAGING
 on:
   push:
     branches:
-      - feature/workflow-dispatch
+      - feature/flask
   workflow_dispatch:
 
 jobs:
